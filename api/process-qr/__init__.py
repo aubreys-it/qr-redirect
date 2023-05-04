@@ -71,9 +71,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     sql = "SELECT * FROM [qr].[map] WHERE qrId='" + qrId + "';"
     cursor.execute(sql)
     row = cursor.fetchone()
-    uri = row[1] 
-    logging.info(uri)
-    if not uri:
+    try:
+        uri = row[1] 
+    except:
         uri = "https://www.burlesonbrands.com"
 
     cursor.close()
