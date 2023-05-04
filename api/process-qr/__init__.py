@@ -63,8 +63,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     sql = "INSERT INTO [qr].[log] " + columns + " VALUES " + tableValues + ";"
 
-    logging.info(sql)
-
     conn = pyodbc.connect(os.environ['DMCP_CONNECT_STRING'])
     cursor = conn.cursor()
     cursor.execute(sql)
@@ -74,6 +72,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     cursor.execute(sql)
     row = cursor.fetchone()
     uri = row[1] 
+    logging.info(uri)
     if not uri:
         uri = "https://www.burlesonbrands.com"
 
