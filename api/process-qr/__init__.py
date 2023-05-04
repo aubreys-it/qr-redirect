@@ -70,10 +70,16 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     cursor.execute(sql)
     conn.commit()
 
+    sql = "SELECT * FROM [qr].[map] WHERE qrId='" + qrId + "';"
+    cursor.execute(sql)
+    row = cursor.fetchone()
+    uri = row[1] 
+
     cursor.close()
     conn.close()
 
     return func.HttpResponse(
-        '',
-        status_code=200
+        uri,
+        headers={'Location': uri},
+        status_code=302
     )
