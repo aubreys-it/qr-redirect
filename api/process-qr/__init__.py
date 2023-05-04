@@ -74,6 +74,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     cursor.execute(sql)
     row = cursor.fetchone()
     uri = row[1] 
+    if not uri:
+        uri = "https://www.burlesonbrands.com"
 
     cursor.close()
     conn.close()
