@@ -1,4 +1,5 @@
 import logging
+import json
 
 import azure.functions as func
 
@@ -16,6 +17,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             name = req_body.get('name')
             
     headers = dict(req.headers)
+
+    logging.info(json.dumps(headers, indent=2))
 
     return func.HttpResponse(
         headers,
