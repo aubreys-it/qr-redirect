@@ -66,7 +66,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     cursor = conn.cursor()
     cursor.execute(sql)
     conn.commit()
-
+#
     sql = "SELECT * FROM [qr].[map] WHERE qrId='" + qrId + "';"
     cursor.execute(sql)
     row = cursor.fetchone()
