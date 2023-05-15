@@ -7,14 +7,17 @@ import azure.functions as func
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
-    qrId = req.params.get('qrId')
+    qrId = req.params.get('qrid')
     if not qrId:
         try:
             req_body = req.get_json()
         except ValueError:
             pass
         else:
-            qrId = req_body.get('qrId')
+            qrId = req_body.get('qrid')
+
+    if not qrId:
+        qrId = '0000'
             
     headers = dict(req.headers)
     columns = "([qrId], "
